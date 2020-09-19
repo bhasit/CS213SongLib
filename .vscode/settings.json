@@ -1,0 +1,19 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/**/*.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-11.0.2/lib/**/*.jar"
+        ],
+        "exclude": [
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/javafx.web.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/javafx.swing.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/javafx.media.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/javafx.graphics.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/javafx.fxml.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/javafx.controls.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/javafx.base.jar",
+            "/Users/bhasit/Documents/SchoolCS/javafx-sdk-15/lib/javafx-swt.jar"
+        ]
+    },
+}
