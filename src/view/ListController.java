@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -22,6 +23,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ListController {
@@ -104,6 +106,15 @@ public class ListController {
 	@FXML
 	private void deleteSong(ActionEvent event) {
 				int index=listView.getSelectionModel().getSelectedIndex();
+				Alert confirmation = new Alert(AlertType.CONFIRMATION);
+				confirmation.setTitle("Confirm delete");
+				confirmation.setHeaderText("Delete song confirmation");
+				confirmation.setContentText("Do you want to delete song:\n"
+						+ obsList.get(index).getTitle()+" by "+obsList.get(index).getArtist()+"?");
+				Optional<ButtonType> result = confirmation.showAndWait();
+				if (result.get() != ButtonType.OK){
+					return;
+				}
 				obsList.remove(index);
 				if(obsList.size()==0) {
 					curTitle.clear();
@@ -148,6 +159,16 @@ public class ListController {
 					   alert.setHeaderText("Error editing song!");
 					   alert.setContentText("No changes to be made found!");
 					   alert.showAndWait();
+					   return;
+				}
+				Alert confirmation = new Alert(AlertType.CONFIRMATION);
+				confirmation.setTitle("Confirm Edit");
+				confirmation.setHeaderText("Edit song confirmation");
+				confirmation.setContentText("Do you want to edit song:\n"
+						+ copy.getTitle()+" by "+copy.getArtist()+"?");
+				Optional<ButtonType> result = confirmation.showAndWait();
+				if (result.get() != ButtonType.OK){
+					return;
 				}
 				String check=checkAdd(toChange);
 				if(check.length()!=0){
@@ -163,7 +184,7 @@ public class ListController {
 					Alert alert=new Alert(AlertType.INFORMATION);
 					   alert.setTitle("Error");
 					   alert.setHeaderText("Error editing song!");
-					   alert.setContentText("Song and artist combination already exists in libray!");
+					   alert.setContentText("Song and artist combination already exists in library!");
 					   obsList.add(copy);
 					   FXCollections.sort(obsList, new songComparator());
 					   listView.getSelectionModel().select(index);
@@ -199,6 +220,15 @@ public class ListController {
 				String artist=addArtist.getText();
 				String album=addAlbum.getText();
 				String year=addYear.getText();
+				Alert confirmation = new Alert(AlertType.CONFIRMATION);
+				confirmation.setTitle("Confirm Add");
+				confirmation.setHeaderText("Add song confirmation");
+				confirmation.setContentText("Do you you to add song:\n"
+						+ title+" by "+artist+"?");
+				Optional<ButtonType> result = confirmation.showAndWait();
+				if (result.get() != ButtonType.OK){
+					return;
+				}
 				song temp=new song(title,artist,album,year);
 				String check=checkAdd(temp);
 				if(check.length()!=0){
@@ -213,7 +243,7 @@ public class ListController {
 					Alert alert=new Alert(AlertType.INFORMATION);
 					   alert.setTitle("Error");
 					   alert.setHeaderText("Error adding song!");
-					   alert.setContentText("Song and artist combination already exists in libray!");
+					   alert.setContentText("Song and artist combination already exists in library!");
 					   alert.showAndWait();
 					return;
 				}
